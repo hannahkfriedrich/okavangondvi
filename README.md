@@ -2,17 +2,17 @@
 
 Final project for GEOG 371, Fall 2017
 
-Interactive web-map that displays distribution of NDVI and monthly precipitation in the Okavango Delta in nothern Botswana. The goal of this web map is to communicate to the map viewer the spatial disparity in where precipitation occurs and where vegetation becomes more lush or green as result. Including a DEM (digital elevation model) will help to illustrate how elevation in watersheds affect the level of NDVI (Normalized Difference Vegetation Index) or "greeness" and the Evapotranspiration (ET) rate based on proximity to boundary of watersheds/slope of surface. Essentially, the goal is to have a visual representation of vegetation as a result of precip and elevation. The main challenge of this topic, is finding the suitable system architecture to host and efficiently display the changing distribution of NDVI based on the extent and zoom level of the map. The tentative plan is to use Python to run the NDVI analysis, and hosting this app-like interaction on Heroku to provide a web map that responds quickly to the viewers extent and zoom level of the imagery. Depending on the size of the files, the data may need to be hosted in a GeoDatabase like PostgreSQL. If the files are small enough, the data will be hosted in a File Server. Web-mapping features that I plan on incorporating are graphs displaying the NDVI and ET distribution using d3. As for the style and feel of the webmap, I plan to keep it simplistic and minimal, using a small array of colors and having most of the color displayed as the NDVI values.
+Interactive web-map that displays distribution of NDVI and monthly precipitation in the Okavango Delta in nothern Botswana. The goal of this web map is to communicate to the map viewer the spatial disparity in where precipitation occurs and where vegetation becomes more lush or green as result. The goal of this web map is to illustrate the relationship between precipitation and vegetation in the Okavango Delta. With multiple years of imagery available to derive NDVI and data available for precipitation, the goal is to show how in different years, increased precipitation leads to more vegetated areas. The main challenge of this topic, is finding the suitable system architecture to host and efficiently display the changing distribution of NDVI based on the extent and zoom level of the map. The tentative plan is to use Python to run the NDVI analysis, and hosting this app-like interaction on Heroku to provide a web map that responds quickly to the viewers extent and zoom level of the imagery. Depending on the size of the files, the data may need to be hosted in a GeoDatabase like PostgreSQL. If the files are small enough, the data will be hosted in a File Server. Web-mapping features that I plan on incorporating are graphs displaying the NDVI and ET distribution using d3. As for the style and feel of the webmap, I plan to keep it simplistic and minimal, using a small array of colors and having most of the color displayed as the NDVI values.
 
 
 
-|                   Name                   |               Description                |                   URL                    | Attribute | Size |
-| :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :-------: | :--: |
-|       NDVI - derived from Landsat        |             30 m resoluttion             |         [Google Earth Engine][]          |  raster   |      |
-|        NDVI - derived from MODIS         |             250 m resolution             |          [USGS Early Warning][]          |  raster   |      |
-| Average annual seasonal rainfall across the Okavango Basin | Average annual seasonal rainfall across the Okavango Basin, based on an interpolation of annual average rainfall at stations (see Average rainfall per station.zip) in and surrounding the Basin. Averages are given in the field 'Range' in 100 millimetre intervals. Original records obtained from the Global Historical Climate Network database, and the Botswana and Namibia Meteorological Services. Origin: RAISON. | [Environmental Information Service Namibia]( http://www.the-eis.com/searchresults.php?action=quicksearch&seltype=Shapefile) |  vector   |      |
-|                                          | Boundaries drawn on the watershed that determines the catchment area in Angola and a 20 kilometre 'buffer' area around the river and Delta in areas where there is no active flow. The watershed boundaries were traced off Landsat images. Origin: RAISON. | [Environmental Information Service Namibia][] |  vector   |      |
-|         Game parks and reserves          | Game parks and reserves in and around the Okavango Basin. From Atlas of Namibia data, Digital Atlas of Africa produced by United States Geological Survey and HOORC. Origin: RAISON & various. | [Environmental Information Service Namibia][] |  vector   |      |
+|                   Name                   |               Description                |                   URL                    | Attribute |
+| :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :-------: |
+|       NDVI - derived from Landsat        |             30 m resoluttion             | [Google Earth Engine](https://earthengine.google.com/datasets/) |  raster   |
+|        NDVI - derived from MODIS         |             250 m resolution             | [USGS Early Warning](https://earlywarning.usgs.gov/fews/product/450) |  raster   |
+| Average annual seasonal rainfall across the Okavango Basin | Average annual seasonal rainfall across the Okavango Basin, based on an interpolation of annual average rainfall at stations (see Average rainfall per station.zip) in and surrounding the Basin. Averages are given in the field 'Range' in 100 millimetre intervals. Original records obtained from the Global Historical Climate Network database, and the Botswana and Namibia Meteorological Services. Origin: RAISON. | [Environmental Information Service Namibia]( http://www.the-eis.com/searchresults.php?action=quicksearch&seltype=Shapefile) |  vector   |
+|         Okavango Basin Catchment         | Boundaries drawn on the watershed that determines the catchment area in Angola and a 20 kilometre 'buffer' area around the river and Delta in areas where there is no active flow. The watershed boundaries were traced off Landsat images. Origin: RAISON. | [Environmental Information Service Namibia]( http://www.the-eis.com/searchresults.php?action=quicksearch&seltype=Shapefile) |  vector   |
+|         Game parks and reserves          | Game parks and reserves in and around the Okavango Basin. From Atlas of Namibia data, Digital Atlas of Africa produced by United States Geological Survey and HOORC. Origin: RAISON & various. | [Environmental Information Service Namibia]( http://www.the-eis.com/searchresults.php?action=quicksearch&seltype=Shapefile) |  vector   |
 
 Screenshot from Google Earth Engine of NDVI generated by Lansat image from 2015
 
@@ -23,12 +23,6 @@ Screenshot of data in QGIS of Okavango Delta Boundary, Precipitation, MODIS NDVI
 ![](https://github.com/hannahfriedrich/Okavango_NDVI/blob/master/img/QGIS_DataPic.png)
 
 
-
-[Google Earth Engine] : https://earthengine.google.com/datasets/
-
-[USGS Early Warning] : https://earlywarning.usgs.gov/fews/product/450
-
-[Environmental Information Service Namibia] : http://www.the-eis.com/searchresults.php?action=quicksearch&seltype=Shapefile
 
 
 
