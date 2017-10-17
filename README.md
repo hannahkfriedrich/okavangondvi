@@ -12,6 +12,7 @@ Interactive web-map that displays distribution of NDVI and monthly precipitation
 | Evapotranspiration (ET) |                  |      |           |      |
 |                         |                  |      |           |      |
 
-![](hannahfriedrich.github.io/Okavango_NDVI/img/GEE_NDVI.png)
+![](Okavango_NDVI/img/GEE_NDVI.png)
 
-![](hannahfriedrich.github.io/Okavango_NDVI/img/QGIS_DataPic.png)
+![](Okavango_NDVI/img/QGIS_DataPic.png)
+
