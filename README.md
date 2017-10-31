@@ -23,9 +23,9 @@ Screenshot of data in QGIS of Okavango Delta Boundary, Precipitation, MODIS NDVI
 ![](https://github.com/hannahfriedrich/Okavango_NDVI/blob/master/img/QGIS_DataPic.png)
 
 
-#Interface Sketch
+# Interface Sketch
 
-
+The following four images provides a glimpse at the design and structure of the final web map. The landing page will be one html page and the Background, Data, and About Pages will all be included in a second html page. When the reader clicks on "Go to Map" on the landing page, they will be send to the second html page (same tab) and the Background will be the default tab. As they click on Data or About, new information in the side panel will appear with the corresponding information. 
 
 ![](https://github.com/hannahfriedrich/okavangondvi/blob/master/img/Landing.jpg)
 
