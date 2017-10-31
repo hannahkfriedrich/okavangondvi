@@ -23,11 +23,17 @@ Screenshot of data in QGIS of Okavango Delta Boundary, Precipitation, MODIS NDVI
 ![](https://github.com/hannahfriedrich/Okavango_NDVI/blob/master/img/QGIS_DataPic.png)
 
 
+#Interface Sketch
 
 
 
+![](https://github.com/hannahfriedrich/okavangondvi/blob/master/img/Landing.jpg)
 
+![](https://github.com/hannahfriedrich/okavangondvi/blob/master/img/Background.jpg)
 
+![](https://github.com/hannahfriedrich/okavangondvi/blob/master/img/Data.jpg)
+
+![](https://github.com/hannahfriedrich/okavangondvi/blob/master/img/About.jpg)
 
 
 
