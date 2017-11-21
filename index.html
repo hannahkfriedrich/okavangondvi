@@ -95,10 +95,10 @@
 
     L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png').addTo(map);
 
-    b = L.nonTiledLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_PNW_ATLAS/wms?', {
+    b = L.nonTiledLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/wms?', {
 //        maxZoom: 19,
 //        minZoom: 0,
-        layers: 'pnw_snowfall',
+        layers: 'whole',
         format: 'image/png',
         transparent: 'true',
         opacity: 0.8
@@ -142,11 +142,11 @@ var data = null;
 
             var magDimension = filter.dimension(function(d) {
                 var mag = d;
-                return  mag < 20 ? '1-1.2' :
-                    mag < 40 ? '1.2-1.5' :
-                        mag <   60 ? '1.5-2' :
-                            mag < 100 ? '2-2.5' :
-                                mag <   119 ? '2.5-3' :
+                return  mag < 0.2 ? '1-1.2' :
+                    mag < 0.3 ? '1.2-1.5' :
+                        mag <   0.4 ? '1.5-2' :
+                            mag < 0.5 ? '2-2.5' :
+                                mag <   0.6 ? '2.5-3' :
                                     '>3'
             });
 
