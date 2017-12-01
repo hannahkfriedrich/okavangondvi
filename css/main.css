@@ -8,7 +8,12 @@ body {
 #map {
     width: 50%;
     height: 100%;
+    /*padding-left: 20px ! important;*/
 }
+
+/*.container-fluid {*/
+    /*padding-left: 10px;*/
+/*}*/
 
 /*!*info panel*!*/
 /*.info {*/
@@ -50,11 +55,19 @@ body {
     /*opacity: 0.7;*/
 /*}*/
 
-.top-buffer { margin-top:30px; }
+.top-buffer { margin-top:10px; }
+
+.mid-buffer { margin-top:5px; }
+
+.footer-buffer {
+    text-align: center;
+}
 
 h1 {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: medium;
+    font-size: 26px;
+    color: #538470;
+    text-shadow: 3px 3px #ededed;
 }
 
 p {
@@ -62,7 +75,79 @@ p {
     font-size: x-small;
 }
 
-.main-panel {
-    height: 400px;
+h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 26px;
+    color: #538470;
+}
 
+.main-panel {
+    height: 350px;
+
+}
+
+#toggle-one {
+
+    z-index: 1000003 !important;
+}
+.vegDesign {
+    position: absolute;
+    opacity: 0.3;
+    left: -15px;
+    top: -40px;
+    padding-top: 10px;
+    padding-left: 80px;
+    width: 20%;
+    height: 20%;
+}
+
+#veg-chart{
+    /*padding-bottom: 3px;*/
+    padding-left: 5px;
+    width: 80%;
+    height: 80%;
+}
+
+#veg-chart .x.axis text {
+    font-family: 'Josefin Sans', sans-serif;
+    /*text-anchor: end !important;*/
+    /*transform: rotate(-45deg);*/
+}
+
+#veg-chart .y.axis text {
+    font-family: 'Josefin Sans', sans-serif;
+    text-anchor: end !important;
+}
+
+.social {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+.question-circle {
+    color: #6ba78a;
+}
+
+.facebook-square {
+    color:#6ba78a;
+}
+
+.github-icon {
+    color: #6ba78a;
+}
+
+.btn-primary{
+    background-color: #6ba78a !important;
+    color: #333;
+}
+
+.btn-default {
+    background-color: #dfc27d !important;
+    color: #333;
+}
+
+a{
+  color: #6ba78a !important;
+    text-shadow: #3f454e;
 }

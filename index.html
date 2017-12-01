@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Geospatial Data Interaction</title>
+    <title>Okavango NDVI Interaction</title>
     <!-- Style Sheets-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" >
     <link rel="stylesheet" href="https://dc-js.github.io/dc.js/css/dc.min.css">
@@ -10,8 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="../../dist/storymap.css">-->
     <link rel="stylesheet" href="css/main.css">
+    <!--Toggles css-->
+    <!--<link rel="stylesheet" href="css/Toggles.css">-->
+    <!--<link rel="stylesheet" href="css/themes/toggles-soft.css">-->
     <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!--facebook and info icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css" rel='stylesheet'/>
+    <!--add required stylesheets-->
     <!-- Javascript Libraries-->
     <script src="https://dc-js.github.io/dc.js/js/d3.js"></script>
     <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
@@ -21,65 +29,151 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
     <script src="https://unpkg.com/leaflet.nontiledlayer/dist/NonTiledLayer.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <!--<script src="../../dist/storymap.js"></script>-->
     <script src="js/pako.min.js"></script>
     <script src="js/UPNG.js"></script>
+    <!--Toggles js-->
+    <!--<script src="dist/toggles.js" type="text/javascript"></script>-->
+    <!--&lt;!&ndash;Switchery files&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="css/switchery.css" />-->
+    <!--<script src="dist/switchery.js"></script>-->
 
+    <!-- mapbox gl js -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.js"></script>
+    <!-- leaflet mapbox js -->
+    <script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+
+
+    <!--story map plugin-->
+    <script src="dist/storymap.2.3.js"></script>
+
+    <!--add favicon for the web page-->
+    <link rel="shortcut icon" href="img/coral.ico" type="image/x-icon">
 </head>
 
 <body>
 
-<div class="container title">
-    <h1>The Will of the People<br><small>All ballots are not cast equally</small></h1>
+
+<div class="vegDesign">
+    <img src="img/coral.png" class="img-responsive" alt="responsive image"
+         alt-text="watercolor">
 </div>
 
-<div class="container-fluid ">
+<div class="container title">
+    <h1>The Dynamic Okavango Delta<br><small>Seasonal vegetation trends monitored from space</small></h1>
+</div>
+
+<div class="social">
+    <dl>
+    <dt>
+        <!--facebook icon-->
+        <a class="fa fa-facebook-square facebook-square btn"
+           href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hannahfriedrich.github.io/delta/"
+           target="_blank"></a>
+    </dt>
+    <dt>
+        <!--facebook icon-->
+        <a class="fa fa-github github-icon btn" href="https://github.com/hannahfriedrich/okavangondvi" style="top:40px"
+           target="_blank"></a>
+    </dt>
+    <dt>
+        <!--info icon-->
+        <i class="fa fa-question-circle question-circle btn" style="top:60px" data-toggle="modal" data-target="#info-modal"></i>
+    </dt>
+    </dl>
+</div>
+
+<!--the info page-->
+<div class="modal fade" id="info-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">About</h4>
+            </div>
+            <div class="modal-body">
+                <p>This is a web map of an overview of the geo-physical system of the Okavango Delta and the
+                    human influences on the sustained well being of the delta. The story map library is derived from the
+                    storymap plugin for leaflet at <a>http://atlefren.github.io/storymap/</a>, and its functionality
+                    relies on both leaflet and Boostrap.</p>
+                <p><b>storymap.js</b> | Released Date: 02/20/2017 | Version: 2.1 | MIT License </p>
+                <p><b>Author: Hannah Friedrich</b> | College of Earth, Ocean, Atmospheric Science | Oregon State University
+                </p>
+                <p>The NDVI rasters were generated with Google Earth Engine. Take a look at the code <a href="https://code.earthengine.google.com/1af7495afa6745701d747a2381f70fb0" target="_blank">here</a>.</p>
+                <p>The favicon image was acquired from <a>https://commons.wikimedia.org/wiki/File:Icon_river_delta.svg</a></p>
+                <p>This web map uses geospatial data the Namibia Environmental Information Service.</p>
+                <p>This basemap used for this webmap is Mapbox's outdoors style.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container">
     <div class="row top-buffer">
         <div class="col-xs-4">
-            <p>What if every elected delegate represented the same number of votes? What if every ballot cast had the same weight in the nomination process? Would it change the number of delegates allocated to each candidate?</p>
-            <p>The Supreme Court recently confirmed the "One person, one vote" principle. But it applies for elections, not primaries. Delegate allocation is managed at the State level and different procedures rule the allocation (caucus vs. primary, winner-takes-all vs. proportional, etc.). These mechanisms lead to different situations, and some votes matter more than others. Who gets overrepresented? A republican from Utah? A democrat from San Francisco? Which candidate is favored by the disparity of procedures?</p>
+            <p>With it’s headwaters in the rainy and forested highlands of Angola, the Okavango River snakes its way southeast
+                through the Caprivi Strip of Namibia and into Botswana. The Cuito and Cubango Rivers in the highlands of Angola
+                are together what form the Okavango River and subsequently the <a href="https://hannahfriedrich.github.io/delta/" target="_blank"> <b>Okavango Delta</b></a>.
+               </p>
+            <p><input id="toggle-one" checked type="checkbox"> </p>
         </div>
         <div class="col-xs-4">
-            <p>These maps and charts compare two situations: 1) The ‘What if’ situation where the number of delegates allocated to each candidate reflects the actual number of votes it received. Opacity of counties accounts for population. 2) The actual situation where some citizens have more influence on the output of the nomination than others. Opacity accounts for the ratio delegates/votes for a given county.</p>
-            <p>The ratio delegates/votes is calculated for every county and both parties according to a score each State receives (the number of delegates it sends divided by the overall turnout in this State), multiplied by the number of votes in this particular county.</p>
+            <p>The heaviest rains in the Angolan highlands occur in April - October. Because of the seasonality of the precipitation,
+                the delta swells to life when the upstream flood waters arrive and shrinks when the dry season approaches.
+                The permanent wetland area is about 1,200 sq miles and the seasonal wetland is about 3,000 sq miles.</p>
         </div>
         <div class="col-xs-4">
-            <p>Caucuses typically lead to a low turnout (Utah’s republican caucus for instance) ushering in a high ratio. Some counties’ high ratio might also be due to a weak representation of one of the parties (District of Columbia’s republican convention for instance where 2,810 voters elected 19 delegates). This analysis omits the fact that early voting States have a higher impact on who gets to stay in the race (cf. the precocious dropout of Jeb Bush). This model assumes that delegates are allocated statewide and not per county or congressional district, which is actually not the case everywhere.</p>
+            <p>The water quality and quantity of the upstream rivers, which deliver about 2.5 trillion gallons of water each year,
+                are essential for a sustained, biodiverse ecology that results in the delta. The Okavango Delta provides habitat
+                for a rich array of wildlife, as well as supporting the approximately 600,000 people that live within the
+                Okavango Basin catchment.</p>
         </div>
     </div> <!-- END OF ROW -->
+
+
 
     <div class="row top-buffer">
         <div class="col-xs-7">
         </div>
         <div class="col-xs-4">
-
         </div>
-
     </div> <!-- END OF ROW -->
 
-<div class = "row main-panel">
 
+
+
+    <div class="row mid-buffer">
+        <div class="col-xs-7">
+        </div>
+        <div class="col-xs-4">
+        </div>
+    </div> <!-- END OF ROW -->
+
+
+
+<div class = "row main-panel">
     <div id='map' class="col-md-6 col-lg-6">
         <canvas id="mycanvas"></canvas>
+
     </div>
     <div class="col-md-6 col-lg-6">
-        <div id="mag-chart"></div>
+        <div id="veg-chart"></div>
     </div>
 </div>
 
+    <div class="row footer-buffer">
+        <p>Created by <a href="https://github.com/hannahfriedrich/">Hannah Friedrich</a> based on the <a href="assets/license.txt">Mapbox outdoors basemap </a></p></center>
+    </div>
 
-    <!--<div class="row">-->
-        <!--<h4>Count by Depth(m)</h4>-->
-        <!--<div id="depth-chart"></div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<h4>Count by Day</h4>-->
-        <!--<div id="date-chart"></div>-->
-    <!--</div>-->
+
 </div>
 
 
-<script type="text/javascript">
+
+    <script type="text/javascript">
+
 
     // https://github.com/stuartmatthews/Leaflet.NonTiledLayer.WCS
     // manipulate Uint8Array
@@ -87,28 +181,68 @@
     // http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
     // https://github.com/photopea/UPNG.js?files=1
 
-    var map = L.map('map').setView([45, -119], 6);
+    var map = L.map('map').setView([-16, 20], 6);
 
-    // a = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map);
+    //a = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2X.png').addTo(map);
 
-    a = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
+    var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={mapbox_token}';
+    token = 'pk.eyJ1IjoiZnJpZWRyaWgiLCJhIjoiY2o4eGYyZzllMGtiYjMzcGp0cTM5NXZ0cCJ9.BPCA9enT7iq6naVIOEHK9w';
 
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png').addTo(map);
-
-    b = L.nonTiledLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/wms?', {
-//        maxZoom: 19,
-//        minZoom: 0,
-        layers: 'whole',
-        format: 'image/png',
-        transparent: 'true',
-        opacity: 0.8
+    var a = L.mapboxGL({
+        accessToken: token,
+        style: 'mapbox://styles/mapbox/outdoors-v9'
+//        attribution: 'Created By <a href="https://github.com/hannahfriedrich/">Hannah Friedrich</a> based on the <a href="assets/license.txt">Mapbox basic style</a>'
     }).addTo(map);
 
-var data = null;
+    //a = L.tileLayer(mapboxUrl, {id: 'mapbox.outdoors', attribution: '', maxZoom: 20, accessToken: accessToken}),
+
+
+        //a = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
+
+    //L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png').addTo(map);
+
+    b = L.nonTiledLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/wms?', {
+        maxZoom: 15,
+        minZoom: 6,
+        layers: 'wet_clip',
+        format: 'image/png',
+        tileSize: 128,
+        transparent: 'true',
+        opacity: 0.9
+    });
+
+    c = L.nonTiledLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/wms?', {
+//        maxZoom: 19,
+//        minZoom: 0,
+        layers: 'drySeason',
+        format: 'image/png',
+        transparent: 'true',
+        tileSize: 128,
+        opacity: 0.9
+    });
+
+
+    var selectedlayer = b;
+    var currentLayerGroup = L.layerGroup();
+    currentLayerGroup.addLayer(selectedlayer);
+    currentLayerGroup.addTo(map);
+    //var group = null;
+
+
+    $('#toggle-one').bootstrapToggle({
+        on: 'Wet Season',
+        off: 'Dry Season',
+        size: 'small'
+    });
+
 
     function updateMapFilter() {
 
-        url= b._ctx.canvas._image.src;
+
+        // map.flyTo(map.getCenter(),map.getZoom());
+        var data = null;
+
+        url = selectedlayer._ctx.canvas._image.src;
         //console.log(src);
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -127,56 +261,153 @@ var data = null;
             console.log("ctype:" + ctype.toString());
             console.log("mean:" + ss.mean(data).toString());
             console.log("median:" + ss.median(data).toString());
+            console.log("max:" + ss.max(data).toString());
             console.log(data);
 
 
             var dataarray = Array.from(data);
-            //var dataarray = uint8ArrayToArray(data);
+            var newarray = [];
+            for(var i=0;i<dataarray.length;i++) {
 
+                if (dataarray[i] < 251 && dataarray[i] > 0) {
+                    newarray.push(dataarray[i]);
+                }
+            }
+            dataarray = newarray;
+            newarray = null;
+
+            //var dataarray = uint8ArrayToArray(data);
             //create crossfilter and filter all the data.
             var filter = crossfilter(dataarray); //Create a crossfilter, input all the geospatial data.
 
 
             //create charts
-            var magChart = dc.barChart('#mag-chart');
+            var vegChart = dc.barChart('#veg-chart');
 
-            var magDimension = filter.dimension(function(d) {
-                var mag = d;
-                return  mag < 0.2 ? '1-1.2' :
-                    mag < 0.3 ? '1.2-1.5' :
-                        mag <   0.4 ? '1.5-2' :
-                            mag < 0.5 ? '2-2.5' :
-                                mag <   0.6 ? '2.5-3' :
-                                    '>3'
+            var vegDimension = filter.dimension(function(d) {
+                var veg = d;
+                return  veg  < 25 ? '0-0.2':
+                    veg < 50 ? '0.21-0.25' :
+                        veg < 75 ? '0.26-0.30' :
+                            veg < 100 ? '0.31-0.35' :
+                                veg < 125 ? '0.36-0.40' :
+                                    veg < 150 ? '0.41-0.45' :
+                                        veg < 175 ? '0.46-0.50' :
+                                            veg < 200 ? '0.51-0.55' :
+                                                veg < 225 ? '0.56-0.60' :
+                                                    veg < 251 ? '0.61-0.65':'>0.65'
+
+
             });
 
-            var magDimensionGroup = magDimension.group();
 
-            magChart
+            var vegDimensionGroup = vegDimension.group();
+
+
+            vegChart
                 .height(400)
-                .margins({top: 10, right: 50, bottom: 30, left: 40})
-                .dimension(magDimension)
-                .group(magDimensionGroup)
+                .width(600)
+                .margins({top:0, right: 50, bottom: 50, left: 45})
+                .dimension(vegDimension)
+                .group(vegDimensionGroup)
                 .elasticY(true)
+                .elasticX(false)
                 .x(d3.scale.ordinal())
+                //.x(d3.scale.ordinalColors(['#dfc27d','#cdbd7c','#bab87b','#a7b37a','#95ae79','#82a978','#70a477', '#5e9e76', '#4b9975', '#389474', '#268f73']))
                 .xUnits(dc.units.ordinal)
                 .yAxis()
-                .ticks(3);
+//                .xAxisLabel('NDVI Value')
+//                .yAxisLabel('Count')
+//                .renderLabel(true)
+//                .label(function (p) {
+//                    return p.key;
+//                })
+                .ticks(5)
+            ;
+
 
             dc.renderAll();
 
+            var bars = $("rect.bar");
+            for(var i =0; i< bars.length;i++) {
+                text_tmp = $(bars[i]).find("title").text();
+                text = (text_tmp.split(":")[0]);
+                if (text == "0-0.2") {
+                    $(bars[i]).css({ fill: '#dfc27d' });
+                }
+                if (text == "0.21-0.25") {
+                    $(bars[i]).css({ fill: '#cdbd7c' });
+                }
+                if (text == "0.26-0.30") {
+                    $(bars[i]).css({ fill: '#bab87b' });
+                }
+                if (text == "0.31-0.35") {
+                    $(bars[i]).css({ fill: '#a7b37a' });
+                }
+                if (text == "0.36-0.40") {
+                    $(bars[i]).css({ fill: '#95ae79' });
+                }
+                if (text == "0.41-0.45") {
+                    $(bars[i]).css({ fill: '#82a978' });
+                }
+                if (text == "0.46-0.50") {
+                    $(bars[i]).css({ fill: '#70a477' });
+                }
+                if (text == "0.51-0.55") {
+                    $(bars[i]).css({ fill: '#5e9e76' });
+                }
+                if (text == "0.56-0.60") {
+                    $(bars[i]).css({ fill: '#4b9975' });
+                }
+                if (text == "0.61-0.65") {
+                    $(bars[i]).css({ fill: '#389474' });
+                }
+                if (text == ">0.65") {
+                    $(bars[i]).css({ fill: '#268f73' });
+                }
 
-        };
+
+                }
+
+            };
+
 
         xhr.send();
 
-        dc.redrawAll();
+     //   dc.redrawAll();
 
     }
 
     updateMapFilter();
-    map.on('moveend',updateMapFilter);
-    map.on('zoomend',updateMapFilter);
+
+    //  behavior
+    $('#toggle-one').change(function() {
+        currentLayerGroup.clearLayers();
+
+       if($(this).prop('checked')){
+           selectedlayer = b;
+
+       }else {
+           selectedlayer = c;
+       }
+        currentLayerGroup.addLayer(selectedlayer);
+//        map.on('moveend',updateMapFilter);
+//        map.on('zoomend',updateMapFilter);
+
+
+    });
+
+    map.on('layeradd',updateMapFilter);
+    b.on('load', updateMapFilter);
+    c.on('load', updateMapFilter);
+  //  map.on('moveend',updateMapFilter);
+   // map.on('zoomend',updateMapFilter);
+    //map.invalidateSize();
+//    map.on('viewreset',updateMapFilter);
+
+    map.flyTo([-16, 20], 6);
+
+
 
 </script>
 </body>
